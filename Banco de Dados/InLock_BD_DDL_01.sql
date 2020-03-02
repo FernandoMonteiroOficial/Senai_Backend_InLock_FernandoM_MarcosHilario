@@ -1,6 +1,11 @@
- CREATE DATABASE InLock_Games_Tarde; USE InLock_Games_Tarde; CREATE TABLE Estudio (	IdEstudio		INT PRIMARY KEY IDENTITY,	NomeEstudio		VARCHAR(100) ); Criar uma tabela de estúdios com os campos de IdEstudio e NomeEstudio;
-Criar uma tabela de jogos com os campos IdJogo, NomeJogo, Descricao,
-DataLancamento, Valor e IdEstudio;
-Criar uma tabela de tipos de usuários contendo os campos IdTipoUsuario e Titulo;
-Criar uma tabela de usuários contendo os campos de IdUsuario, Email, Senha e
-IdTipoUsuario;
+ CREATE DATABASE InLock_Games_Tarde; USE InLock_Games_Tarde; CREATE TABLE Estudio (	IdEstudio		INT PRIMARY KEY IDENTITY,	NomeEstudio		VARCHAR(100) NOT NULL UNIQUE ); CREATE TABLE Jogo (	IdJogo			INT PRIMARY KEY IDENTITY,	NomeJogo		VARCHAR(100),	Descricao		VARCHAR(200),	DataLancamento	DATE, 	Valor			MONEY,	IdEstudio		INT FOREIGN KEY REFERENCES Estudio(IdEstudio)); CREATE TABLE TipoUsuario (
+	IdTipoUsuario	INT PRIMARY KEY IDENTITY,
+	Titulo			VARCHAR(100) NOT NULL UNIQUE
+);
+
+CREATE TABLE Usuario (
+	IdUsuario		INT PRIMARY KEY IDENTITY,
+	Email			VARCHAR(100) NOT NULL UNIQUE,
+	Senha			VARCHAR(100) NOT NULL,
+	IdTipoUsuario	INT FOREIGN KEY REFERENCES TipoUsuario(IdTipoUsuario)
+);
