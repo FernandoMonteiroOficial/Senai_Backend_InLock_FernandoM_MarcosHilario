@@ -27,7 +27,7 @@
  WHERE Email = 'admin@admin.com' and Senha= 'admin';
 
  
-
+ SELECT U.IdUsuario, U.Email, U.IdTipoUsuario, TU.Titulo FROM Usuario U INNER JOIN TipoUsuario TU ON U.IdTipoUsuario = TU.IdTipoUsuario
 
 
 
