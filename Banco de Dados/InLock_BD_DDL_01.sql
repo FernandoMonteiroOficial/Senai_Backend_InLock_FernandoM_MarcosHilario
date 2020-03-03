@@ -1,5 +1,5 @@
  CREATE DATABASE InLock_Games_Tarde;
-
+	
  USE InLock_Games_Tarde;
 
  CREATE TABLE Estudio (

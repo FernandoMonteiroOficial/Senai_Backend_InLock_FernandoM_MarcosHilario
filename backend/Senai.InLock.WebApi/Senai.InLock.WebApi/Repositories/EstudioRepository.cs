@@ -69,6 +69,96 @@ namespace Senai.InLock.WebApi.Repositories
             }
         }
 
+        public EstudioDomain GetporId(int id)
+        {
+            using (SqlConnection con = new SqlConnection(stringConexao))
+            {
+                string querySelectById = "SELECT IdEstudio, NomeEstudio FROM Estudio WHERE IdEstudio = @ID";
 
+                con.Open();
+
+                SqlDataReader rdr;
+
+                using (SqlCommand cmd = new SqlCommand(querySelectById, con))
+                {
+                    cmd.Parameters.AddWithValue("@ID", id);
+
+                    rdr = cmd.ExecuteReader();
+
+                    if (rdr.Read())
+                    {
+                        EstudioDomain estudio = new EstudioDomain
+                        {
+                            IdEstudio = Convert.ToInt32(rdr["IdEstudio"])
+                            ,
+                            NomeEstudio = rdr["NomeEstudio"].ToString()
+                        };
+
+                        return estudio;
+                    }
+
+                    return null;
+                }
+            }
+        }
+
+        public void Cadastrar(EstudioDomain novoEstudio)
+        {
+            using (SqlConnection con = new SqlConnection(stringConexao))
+            {
+
+                string queryInsert = "INSERT INTO Estudio(NomeEstudio) VALUES (@NomeEstudio)";
+
+
+                using (SqlCommand cmd = new SqlCommand(queryInsert, con))
+                {
+
+                    cmd.Parameters.AddWithValue("@NomeEstudio", novoEstudio.NomeEstudio);
+
+                    con.Open();
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void Atualizar(int id, EstudioDomain estudioAtualizado)
+        {
+
+            using (SqlConnection con = new SqlConnection(stringConexao))
+            {
+                string queryUpdate = "UPDATE Estudio SET NomeEstudio = @NomeEstudio WHERE IdEstudio = @ID";
+
+                using (SqlCommand cmd = new SqlCommand(queryUpdate, con))
+                {
+
+                    cmd.Parameters.AddWithValue("@ID", id);
+                    cmd.Parameters.AddWithValue("@NomeEstudio", estudioAtualizado.NomeEstudio);
+
+                    con.Open();
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public void Delete(int id)
+        {
+
+            using (SqlConnection con = new SqlConnection(stringConexao))
+            {
+
+                string queryDelete = "DELETE FROM Estudio WHERE IdEstudio = @ID";
+
+                using (SqlCommand cmd = new SqlCommand(queryDelete, con))
+                {
+                    cmd.Parameters.AddWithValue("@ID", id);
+
+                    con.Open();
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }

@@ -9,5 +9,13 @@ namespace Senai.InLock.WebApi.Interfaces
     interface IEstudioRepository
     {
         List<EstudioDomain> Listar();
+
+        void Cadastrar(EstudioDomain novoEstudio);
+
+        void Atualizar(int id, EstudioDomain estudioadd);
+
+        void Delete(int id);
+
+        EstudioDomain GetporId(int id);
     }
 }

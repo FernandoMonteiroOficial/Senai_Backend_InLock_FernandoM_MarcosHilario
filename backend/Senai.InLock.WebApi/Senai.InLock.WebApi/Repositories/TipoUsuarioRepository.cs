@@ -68,5 +68,62 @@ namespace Senai.InLock.WebApi.Repositories
 
             return lista;
         }
+
+        public string Inserir(TipoUsuarioDomain nome)
+        {
+            using (SqlConnection con = new SqlConnection(stringConexao))
+            {
+                string insert = "INSERT INTO TipoUsuario(Titulo) VALUES(@Titulo)";
+
+                using (SqlCommand cmd = new SqlCommand(insert, con))
+                {
+                    con.Open();
+
+                    cmd.Parameters.AddWithValue("@Titulo", nome.Titulo);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            return "Tipo Usuário Cadastrado!";
+        }
+
+        public string Atualizar(int id, TipoUsuarioDomain tipoUsuario)
+        {
+            using (SqlConnection con = new SqlConnection(stringConexao))
+            {
+                string update = "UPDATE TipoUsuario SET Titulo = @Value WHERE IdTipoUsuario = @Id";
+
+                using (SqlCommand cmd = new SqlCommand(update, con))
+                {
+                    con.Open();
+
+                    cmd.Parameters.AddWithValue("@Value", tipoUsuario.Titulo);
+                    cmd.Parameters.AddWithValue("@Id", id);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+
+            return "Tipo Usuário Atualizado!";
+        }
+
+        public string Deletar(int id)
+        {
+            using (SqlConnection con = new SqlConnection(stringConexao))
+            {
+                string delete = "DELETE FROM TipoUsuario WHERE IdTipoUsuario = @Id";
+
+                using (SqlCommand cmd = new SqlCommand(delete, con))
+                {
+                    con.Open();
+
+                    cmd.Parameters.AddWithValue("@Id", id);
+
+                    cmd.ExecuteNonQuery();
+                }
+                return "Tipo Usuário Deletado!";
+
+            }
+        }
     }
 }

@@ -9,5 +9,11 @@ namespace Senai.InLock.WebApi.Interfaces
     interface ITipoUsuarioRepository 
     {
         List<TipoUsuarioDomain> Listar();
+
+        string Inserir(TipoUsuarioDomain nome);
+
+        string Atualizar(int id, TipoUsuarioDomain tipoUsuario);
+
+        string Deletar(int id);
     }
 }
