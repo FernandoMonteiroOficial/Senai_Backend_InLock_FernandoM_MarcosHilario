@@ -15,3 +15,5 @@ VALUES		('admin@admin.com', 'admin', 1),
 			('cliente@cliente.com', 'cliente', 2);
 
 			
+
+			
