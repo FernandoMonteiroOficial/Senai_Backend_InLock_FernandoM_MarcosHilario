@@ -5,7 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Controller\" />
+    <Compile Remove="Interfaces\Class.cs" />
+    <Compile Remove="Interfaces\Class1.cs" />
+    <Compile Remove="Interfaces\Class2.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="wwwroot\" />
   </ItemGroup>
 

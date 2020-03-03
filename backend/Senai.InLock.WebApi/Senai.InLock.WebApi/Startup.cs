@@ -31,6 +31,8 @@ namespace Senai.InLock.WebApi
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseAuthentication();
+
             //Define o uso do MVC
             app.UseMvc();
 

@@ -8,34 +8,34 @@ using System.Threading.Tasks;
 
 namespace Senai.InLock.WebApi.Repositories
 {
-    /// <summary>
-    /// Repositório dos Estudios
+    /// <summary>       
+    /// Repositório dos TipoUsuarios
     /// </summary>
-    public class EstudioReository : IEstudioRepository
+    public class TipoUsuarioRepository : ITipoUsuarioRepository
     {
         /// <summary>
         /// String de conexão com o banco de dados que recebe os parâmetros
-        /// </summary
-        private string stringConexao = "Data Source=DESKTOP-GCOFA7F\\SQLEXPRESS; initial catalog=; user Id=sa; pwd=sa@132";
+        /// </summary>
+        private string stringConexao = "Data Source=DEV701\\SQLEXPRESS; initial catalog=InLock_Games_Tarde; user Id=sa; pwd=sa@132";
 
 
         /// <summary>
-        /// Lista todos os estudios com os nomes completos
+        /// Lista todos os tipousuarios com os nomes completos
         /// </summary>
-        /// <returns>Retorna uma lista de estudios</returns>
-        public List<EstudioDomain> Listar()
+        /// <returns>Retorna uma lista de tiposusuarios</returns>
+        public List<TipoUsuarioDomain> Listar()
         {
-            // Cria uma lista estudios onde serão armazenados os dados
-            List<EstudioDomain> estudio = new List<EstudioDomain>();
+            // Cria uma lista tipousuario onde serão armazenados os dados
+            List<TipoUsuarioDomain> lista = new List<TipoUsuarioDomain>();
 
             // Declara a SqlConnection passando a string de conexão
             using (SqlConnection con = new SqlConnection(stringConexao))
             {
                 // Declara a instrução a ser executada
-                string querySelectAll = "SELECT IdEstudio, NomeEstudio FROM Estudio";
+                string querySelectAll = "SELECT IdTipoUsuario, Titulo FROM TipoUsuario";
 
                 // Abre a conexão com o banco de dados
-                con.Open()
+                con.Open();
 
                 // Declara o SqlDataReader para receber os dados do banco de dados
                 SqlDataReader rdr;
@@ -50,28 +50,23 @@ namespace Senai.InLock.WebApi.Repositories
                     while (rdr.Read())
                     {
                         // Instancia um objeto estudio do tipo EstudioDomain
-                        EstudioDomain estudio = new EstudioDomain
+                        TipoUsuarioDomain tipoUsuario = new TipoUsuarioDomain
                         {
                             // Atribui à propriedade IdEstudio o valor da coluna IdEstudio da tabela do banco de dados
-                            IdEstudio = Convert.ToInt32(rdr["IdEstudio"])
-
-                            // Atribui à propriedade Nome os valores das colunas Nome e Sobrenome da tabela do banco de dados
+                            IdTipoUsuario = Convert.ToInt32(rdr[0])
                             ,
-                            Nome = rdr[1].ToString()
 
-                            // Outra forma
-                            //,Nome = rdr["Nome"].ToString() + ' ' + rdr["Sobrenome"].ToString()
-
-                            // Atribui à propriedade DataNascimento o valor da coluna DataNascimento da tabela do banco de dados
-                            ,
-                            DataNascimento = Convert.ToDateTime(rdr["DataNascimento"])
+                            // Atribui à propriedade Nomeestudio o valor da coluna Nomeestudio da tabela do banco de dados                
+                            Titulo = rdr["Titulo"].ToString()
                         };
 
                         // Adiciona o filme criado à lista funcionarios
-                        funcionarios.Add(funcionario);
+                        lista.Add(tipoUsuario);
                     }
                 }
             }
+
+            return lista;
         }
     }
 }

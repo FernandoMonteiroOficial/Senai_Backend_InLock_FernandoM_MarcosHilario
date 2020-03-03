@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Senai.InLock.WebApi.Interfaces
 {
-    interface IEstudioRepository
+    interface ITipoUsuarioRepository 
     {
-        List<EstudioDomain> Listar();
+        List<TipoUsuarioDomain> Listar();
     }
 }
