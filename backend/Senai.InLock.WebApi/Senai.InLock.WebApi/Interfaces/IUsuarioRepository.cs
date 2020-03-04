@@ -11,16 +11,15 @@ namespace Senai.InLock.WebApi.Interfaces
 
         List<UsuarioDomain> Listar();
 
-        
-        UsuarioDomain BuscarPorId(int id);
+        // void Cadastrar(UsuarioDomain novoUsuario);
 
-       
-       // void Cadastrar(UsuarioDomain novoUsuario);
 
-      
-       // void Deletar(int id);
+        // void Deletar(int id);
 
-        
-       // void Atualizar(int id, UsuarioDomain UsuarioAtualizado);
+
+        // void Atualizar(int id, UsuarioDomain UsuarioAtualizado);
+
+        UsuarioDomain BuscarPorEmailSenha(string email, string senha);
+
     }
 }
